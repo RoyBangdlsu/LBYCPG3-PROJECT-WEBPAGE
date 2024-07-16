@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px 20px; /* Increased padding */
+    position: relative;
+  }
+  
+  header .header-left {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  header .header-left h1 {
+    margin: 0;
+    text-align: center;
+  }
+  
+  header .header-right {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  header .header-right .btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  header .header-right .btn:hover {
+    background-color: #218838;
+  }
+  
+  nav.main-nav {
+    display: flex;
+    justify-content: center;
+    background-color: #0056b3;
+    padding: 10px;
+  }
+  
+  nav.main-nav .nav-left a {
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+  }
+  
+  nav.main-nav .nav-left a:hover {
+    background-color: #003d7a;
+  }
+  
+  .container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #exercise-suggestions {
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  #exercise-description h3 {
+    margin-top: 20px;
+  }
+  
+  .workout-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .workout-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    header .header-left {
+      position: static;
+      transform: none;
+      margin-bottom: 10px;
+    }
+  
+    header .header-right {
+      position: static;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+  
+    nav.main-nav {
+      flex-direction: column;
+    }
+  
+    nav.main-nav .nav-left a {
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    .container {
+      width: 90%;
+      padding: 15px;
+    }
+
+    .suggestion-item {
+      padding: 10px;
+      cursor: pointer;
+    }
+    
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
+    
+  }
+  

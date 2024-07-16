@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>Fitness Tracker</h1>
+    </div>
+    <div class="header-right">
+      <a href="/register" class="btn">Register</a>
+      <a href="/login" class="btn">Login</a>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/goal-setting">Goal Setting</a>
+      <a href="/view-progress">View Progress</a>
+      <a href="/profile">Profile</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Register</h2>
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="goal">Fitness Goal:</label>
+        <input type="text" id="goal" name="goal" placeholder="Enter your fitness goal">
+      </div>
+      <div class="form-group">
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height" placeholder="Enter your height in cm">
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" placeholder="Enter your weight in kg">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password">
+      </div>
+      <button class="btn" type="submit">Register</button>
+    </form>
+  </div>
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>

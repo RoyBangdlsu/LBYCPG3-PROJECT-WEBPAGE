@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>Fitness Tracker</h1>
+    </div>
+    <div class="header-right">
+      <a href="/register" class="btn">Register</a>
+      <a href="/login" class="btn">Login</a>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/goal-setting">Goal Setting</a>
+      <a href="/view-progress">View Progress</a>
+      <a href="/profile">Profile</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Profile</h2>
+    <p>Here you can manage your profile.</p>
+    <!-- Add profile management form or details here -->
+  </div>
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>

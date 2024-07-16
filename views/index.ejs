@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/goal-setting">Goal Setting</a>
+      <a href="/view-progress">View Progress</a>
+      <a href="/profile">Profile</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Welcome to Fitness Tracker</h2>
+    <% if (locals.query && locals.query.login === 'success') { %>
+      <script>
+        alert('Login successful');
+      </script>
+    <% } %>
+
+    <h2>Log Workout</h2>
+    <div class="form-group">
+      <label for="exercise-search">Exercise:</label>
+      <input type="text" id="exercise-search" placeholder="Search for exercise..." onkeyup="searchExercise()">
+      <div id="exercise-suggestions"></div>
+    </div>
+    <div class="form-group">
+      <label for="hours">Hours:</label>
+      <input type="number" id="hours" placeholder="Enter hours spent">
+    </div>
+    <div class="form-group">
+      <label for="sets">Number of Sets:</label>
+      <input type="number" id="sets" placeholder="Enter number of sets">
+    </div>
+    <div class="form-group">
+      <label for="trials">Number of Trials per Set:</label>
+      <input type="number" id="trials" placeholder="Enter number of trials per set">
+    </div>
+    <button class="btn" onclick="logWorkout()">Log Workout</button>
+    <h2>Logged Workouts:</h2>
+    <ul class="workout-list" id="workoutList"></ul>
+
+    <h2>Exercises</h2>
+    <ul>
+      <% if (locals.exercises && locals.exercises.length > 0) { %>
+        <% locals.exercises.forEach(exercise => { %>
+          <li>
+            <h3><a href="/exercise/<%= exercise._id %>"><%= exercise.name %></a></h3>
+            <p><%= exercise.description %></p>
+          </li>
+        <% }) %>
+      <% } else { %>
+        <li>No exercises found</li>
+      <% } %>
+    </ul>
+
+    <h2>Add New Exercise</h2>
+    <form action="/exercise" method="POST">
+      <div class="form-group">
+        <label for="name">Exercise Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter exercise name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Exercise Description:</label>
+        <textarea id="description" name="description" placeholder="Enter exercise description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="calories_burned_per_minute">Calories Burned per Minute:</label>
+        <input type="number" id="calories_burned_per_minute" name="calories_burned_per_minute" placeholder="Enter calories burned per minute" required>
+      </div>
+      <button class="btn" type="submit">Add Exercise</button>
+    </form>
+  </div>
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>
