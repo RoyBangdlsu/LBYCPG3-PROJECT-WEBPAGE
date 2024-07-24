@@ -30,12 +30,14 @@ download node.js from the website: https://nodejs.org/en
 
 ## Install dependency
 
+open cmd and go to your fiile     cd "your file path"
+
 npm i bcrypt connect-mongo cookie-parser dotenv ejs express express-ejs-layouts express-session jsonwebtoken method-override mongoose
 
 npm install express mongoose ejs express-session connect-flash bcryptjs chart.js chartjs-adapter-date-fns
 
 npm i nodemon --save-dev
 
-
+npm install connect-flash
 
 
