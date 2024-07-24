@@ -23,7 +23,14 @@ A web application to track fitness activities, set fitness goals, log workouts, 
 - express-session
 - connect-flash
 
+## download items
+
+download node.js from the website: https://nodejs.org/en
+
+
 ## Install dependency
+
+npm i bcrypt connect-mongo cookie-parser dotenv ejs express express-ejs-layouts express-session jsonwebtoken method-override mongoose
 
 npm install express mongoose ejs express-session connect-flash bcryptjs chart.js chartjs-adapter-date-fns
 
