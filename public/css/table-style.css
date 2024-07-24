@@ -1,0 +1,73 @@
+/* public/css/table-styles.css */
+
+.workout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #f9f9f9; /* Light grey background for the table */
+  }
+  
+  .workout-table th, .workout-table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Increased padding for better visual appearance */
+    text-align: left;
+  }
+  
+  .workout-table th {
+    background-color: #4CAF50; /* Green header background color */
+    color: white; /* White text color for the header */
+  }
+  
+  .workout-table tr:nth-child(even) {
+    background-color: #e6e6e6; /* Slightly darker grey for even rows */
+  }
+  
+  .workout-table tr:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd rows */
+  }
+  
+  .workout-table tr:hover {
+    background-color: #cccccc; /* Darker grey for hover effect */
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  
+  h2, h3 {
+    margin-top: 0;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-container th, .table-container td {
+    padding: 12px; /* Increased padding for better visual appearance */
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .table-container th {
+    background-color: #4CAF50; /* Green header background color */
+    color: white; /* White text color for the header */
+  }
+  
+  .table-container tr:nth-child(even) {
+    background-color: #e6e6e6; /* Slightly darker grey for even rows */
+  }
+  
+  .table-container tr:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd rows */
+  }
+  
+  .table-container tr:hover {
+    background-color: #ddd; /* Hover effect for better interactivity */
+  }
+  

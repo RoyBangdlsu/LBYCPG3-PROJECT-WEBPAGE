@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
+const flash = require('connect-flash');
 const mainRoutes = require('./server/routes/main');
 
 const app = express();
@@ -25,8 +26,13 @@ app.use(session({
   cookie: { secure: false } // Set secure: true if using HTTPS
 }));
 
-// Middleware to make user object available in all templates
+// Flash messages middleware
+app.use(flash());
+
+// Global variables for flash messages
 app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
   res.locals.user = req.session.user;
   next();
 });

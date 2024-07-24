@@ -5,17 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= locals.title %></title>
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Modern table styles with a blue color scheme */
+    .workout-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      margin-top: 20px;
+    }
+
+    .workout-table th {
+      background-color: #1E90FF; /* Blue header background color */
+      color: white;
+      padding: 12px;
+      text-align: left;
+      border: none;
+    }
+
+    .workout-table td {
+      background-color: #f1f8ff; /* Light blue background for table cells */
+      padding: 12px;
+      text-align: left;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .workout-table tr {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .workout-table tr:hover {
+      background-color: #d9eaff; /* Slightly darker blue on hover */
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    h2, h3 {
+      margin-top: 0;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+
+    .table-container table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+    }
+
+    .table-container th, .table-container td {
+      padding: 12px;
+      border: none;
+      text-align: left;
+    }
+
+    .table-container th {
+      background-color: #1E90FF; /* Blue header background color */
+      color: white;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .table-container td {
+      background-color: #f1f8ff; /* Light blue background for table cells */
+      border-radius: 0 0 8px 8px;
+    }
+
+    .table-container tr {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container tr:hover {
+      background-color: #d9eaff; /* Slightly darker blue on hover */
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body>
-  <header>
-    <div class="header-left">
-      <h1>Fitness Tracker</h1>
-    </div>
-    <div class="header-right">
-      <a href="/register" class="btn">Register</a>
-      <a href="/login" class="btn">Login</a>
-    </div>
-  </header>
+  <%- include('partials/header') %>
   <nav class="main-nav">
     <div class="nav-left">
       <a href="/">Home</a>
@@ -26,11 +98,94 @@
     </div>
   </nav>
   <div class="container">
-    <h2>View Progress</h2>
-    <p>Here you can view your progress over time.</p>
-    <!-- Add progress visualization charts/graphs here -->
+    <h2>Your Fitness Progress</h2>
+    <canvas id="progressChart"></canvas>
+    <h3>Workout History</h3>
+    <div class="table-container">
+      <table class="workout-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Exercise</th>
+            <th>Duration (hours)</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Calories Burned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% locals.workouts.forEach(workout => { %>
+            <tr>
+              <td><%= new Date(workout.date).toLocaleDateString() %></td>
+              <td><%= workout.exerciseId.name %></td>
+              <td><%= workout.hours %></td>
+              <td><%= workout.sets %></td>
+              <td><%= workout.trials %></td>
+              <td><%= workout.caloriesBurned %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <%- include('partials/footer') %>
-  <script src="/js/script.js"></script>
+  <script>
+    window.onload = function() {
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      const labels = <%- JSON.stringify(locals.labels) %>;
+      const data = <%- JSON.stringify(locals.data) %>;
+
+      console.log('Labels:', labels); // Debugging: Log labels
+      console.log('Data:', data); // Debugging: Log data
+
+      const progressChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Calories Burned',
+            data: data,
+            borderColor: 'rgba(30, 144, 255, 1)', /* Blue line color */
+            backgroundColor: 'rgba(30, 144, 255, 0.2)', /* Light blue fill color */
+            fill: true
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'day',
+                tooltipFormat: 'PP',
+                displayFormats: {
+                  day: 'MMM dd, yyyy'
+                }
+              },
+              title: {
+                display: true,
+                text: 'Date'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Calories Burned'
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return `${context.dataset.label}: ${context.raw} calories`;
+                }
+              }
+            }
+          }
+        }
+      });
+    };
+  </script>
 </body>
 </html>

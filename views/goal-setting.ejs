@@ -7,15 +7,7 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <div class="header-left">
-      <h1>Fitness Tracker</h1>
-    </div>
-    <div class="header-right">
-      <a href="/register" class="btn">Register</a>
-      <a href="/login" class="btn">Login</a>
-    </div>
-  </header>
+  <%- include('partials/header') %>
   <nav class="main-nav">
     <div class="nav-left">
       <a href="/">Home</a>
@@ -26,16 +18,53 @@
     </div>
   </nav>
   <div class="container">
-    <h2>Goal Setting</h2>
-    <form>
+    <h2>Set Your Fitness Goals</h2>
+    <form action="/goal-setting" method="POST">
       <div class="form-group">
         <label for="goal">Fitness Goal:</label>
-        <input type="text" id="goal" placeholder="Enter your fitness goal">
+        <input type="text" id="goal" name="goal" value="<%= locals.user.goal %>" required>
       </div>
-      <button class="btn" type="submit">Set Goal</button>
+      <div class="form-group">
+        <label for="goalType">Goal Type:</label>
+        <select id="goalType" name="goalType" required>
+          <% locals.goalTypes.forEach(function(type) { %>
+            <option value="<%= type %>" <%= locals.user.goalType === type ? 'selected' : '' %>><%= type %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit">Update Goals</button>
     </form>
+    <h3>Your Current BMI</h3>
+    <p id="bmi"></p>
+    <h3>Goal-specific Feedback</h3>
+    <p id="goalFeedback"></p>
   </div>
   <%- include('partials/footer') %>
-  <script src="/js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const height = <%= locals.user.height %>;
+      const weight = <%= locals.user.weight %>;
+      const goalType = "<%= locals.user.goalType %>";
+      
+      // Calculate BMI
+      const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+      document.getElementById("bmi").textContent = `Your BMI is ${bmi}`;
+      
+      // Provide goal-specific feedback
+      let feedback = "";
+      if (goalType === "Lose Weight") {
+        feedback = "To lose weight, aim for a caloric deficit by reducing calorie intake and increasing physical activity.";
+      } else if (goalType === "Gain Muscle") {
+        feedback = "To gain muscle, focus on strength training exercises and consume a high-protein diet.";
+      } else if (goalType === "Improve Stamina") {
+        feedback = "To improve stamina, engage in regular cardiovascular exercises like running, cycling, or swimming.";
+      } else if (goalType === "Enhance Flexibility") {
+        feedback = "To enhance flexibility, incorporate stretching exercises and yoga into your routine.";
+      } else if (goalType === "General Fitness") {
+        feedback = "For general fitness, maintain a balanced diet and include a variety of exercises in your routine.";
+      }
+      document.getElementById("goalFeedback").textContent = feedback;
+    });
+  </script>
 </body>
 </html>

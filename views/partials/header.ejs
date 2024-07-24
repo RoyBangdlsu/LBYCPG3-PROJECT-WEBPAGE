@@ -11,3 +11,20 @@
     <% } %>
   </div>
 </header>
+
+<!-- 
+  Note: The red lines are only because of the editor.
+  Sometimes editors think there is an error because of the JavaScript in the EJS file.
+  But no worries, it does not matter and will work correctly.
+-->
+
+<script>
+  window.onload = function() {
+    <% if (locals.query && locals.query.success) { %>
+      alert('<%= locals.query.success.replace(/'/g, "\\'") %>');
+    <% } %>
+    <% if (locals.query && locals.query.error) { %>
+      alert('<%= locals.query.error.replace(/'/g, "\\'") %>');
+    <% } %>
+  };
+</script>

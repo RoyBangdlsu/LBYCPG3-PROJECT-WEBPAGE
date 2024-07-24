@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/goal-setting">Goal Setting</a>
+      <a href="/view-progress">View Progress</a>
+      <a href="/profile">Profile</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2><%= exercise.name %></h2>
+    <p><%= exercise.description %></p>
+    <p>Calories burned per minute: <%= exercise.calories_burned_per_minute %></p>
+    <a href="/" class="btn">Back to Home</a>
+  </div>
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>
