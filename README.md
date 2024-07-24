@@ -34,6 +34,7 @@ npm i bcrypt connect-mongo cookie-parser dotenv ejs express express-ejs-layouts 
 
 npm install express mongoose ejs express-session connect-flash bcryptjs chart.js chartjs-adapter-date-fns
 
+npm i nodemon --save-dev
 
 
 
